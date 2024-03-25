@@ -15,8 +15,17 @@ def calcular_tensao(resistencia, corrente):
 def divisor_corrente(R_equivalente,R_interesse,i):
     return (R_equivalente/R_interesse)*i
 
-Req1 = 1/((1/R1)+(1/R2)+(1/R3))
-Req2 = R1*R2/(R1+R2)
+def resistencia_paralelo(lista):
+    valor = 0
+    for i in range(len(lista)):
+        valor += 1/lista[i]
+    return 1/valor
+
+paralelo1 = [R4, R5, R6]
+Req1 = resistencia_paralelo(paralelo1)
+
+paralelo2 = [R1, R2]
+Req2 = resistencia_paralelo(paralelo2)
 
 Req_circuito = Req1 + Req2 + R3
 i_total = calcular_corrente(U, Req_circuito)
